@@ -27,7 +27,14 @@ pipeline {
       }
       stage('Run Tests') {
          steps {
-            sh(script: 'pytest ./tests/test_sample.py')
+            sh(script: """
+            pip3 --install --upgrade pip
+            pip3 install numpy pytest
+            python -m pytest ./tests/test_sample.py
+            
+            // pytest ./tests/test_sample.py'
+            
+            """)
          }
          post {
             success {
